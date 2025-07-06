@@ -1,0 +1,52 @@
+.puzzle-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.puzzle-card {
+  
+  border: 2px solid #000000;
+  border-radius: 12px;
+  width: 220px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.puzzle-card img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.puzzle-card h3 {
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.puzzle-card p {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.puzzle-card button {
+  background-color: #000000;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.puzzle-card button:hover {
+  background-color:  #000000;
+}
+
+.puzzle-card:hover {
+  transform: translateY(-5px);
+}

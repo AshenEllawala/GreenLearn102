@@ -1,0 +1,43 @@
+.video-cards-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.video-cards-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.video-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.video-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.video-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.video-card p {
+  padding: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+}
