@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+   
+  </style>
+</head>
+
+<body>
+  <h1 class="playful-heading"><img src="D:/green learn/Green-learn/src/assets/puzzle.png"
+    alt="Puzzle Image" class="heading-image"> Puzzle Mania</h1>
+ 
+
+  <div class="container">
+    <div class="crossword-container">
+      <table id="crossword">
+        <tr>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+        </tr>
+        <tr>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+        </tr>
+        <tr>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+        </tr>
+        <tr>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+        </tr>
+        <tr>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="cell"><input maxlength="1"></td>
+        </tr>
+        <tr>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+        </tr>
+        <tr>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+        </tr>
+        <tr>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+        </tr>
+        <tr>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="cell"><input maxlength="1"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="clues">
+      <div class="across">
+        <h3>Across</h3>
+        <div class="clue">
+          Trees provide this gas essential for human breathing. (6 letters)
+        </div>
+        <div class="clue">
+          <div>Trees help reduce this, making cities cooler. (4 letters)</div>
+        </div>
+
+
+        <div class="down">
+          <h3>Down</h3>
+          <div class="clue">
+            Trees provide this material used to make furniture and paper. (4 letters)
+          </div>
+          <div class="clue">
+            Trees give us this sweet, sticky substance collected from bees. (5)
+          </div>
+          <div class="clue">
+            Trees provide this to animals and people. (7 letters)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="button check-button" onclick="checkAnswers()">Check Answers</button>
+      <button class="button clear-button" onclick="clearAnswers()">Clear Answers</button>
+    </div>
+
+    <canvas id="confetti"></canvas>
+
+    <script>
+      const answers = [
+        [null, null, null, null, null, null, null, "S"],
+        [null, null, null, null, null, null, null, "H"],
+        [null, null, null, null, null, null, null, "E"],
+        [null, null, null, null, null, null, null, "L"],
+        [null, null, null, null, "H", "E", "A", "T"],
+        ["W", null, null, null, "O", null, null, "E"],
+        ["O", null, null, null, "E", null, null, "R"],
+        ["O", "X", "Y", "G", "E", "N", null, null],
+        ["D", null, null, null, "Y", null, null, null]
+      ];
+
+      document.querySelectorAll('#crossword input').forEach((input, idx) => {
+        input.addEventListener('keyup', (e) => {
+          const inputs = Array.from(document.querySelectorAll('#crossword input'));
+          const currentIndex = inputs.indexOf(input);
+
+          if (e.key === 'ArrowRight' && currentIndex < inputs.length - 1) {
+            inputs[currentIndex + 1].focus();
+          } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            inputs[currentIndex - 1].focus();
+          } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+            const rowLength = 8;
+            const targetIndex = e.key === 'ArrowUp' ?
+              currentIndex - rowLength :
+              currentIndex + rowLength;
+
+            if (targetIndex >= 0 && targetIndex < inputs.length) {
+              inputs[targetIndex].focus();
+            }
+          } else if (input.value && currentIndex < inputs.length - 1) {
+            inputs[currentIndex + 1].focus();
+          }
+        });
+      });
+
+      function checkAnswers() {
+        const table = document.getElementById("crossword");
+        let allCorrect = true;
+
+        for (let i = 0; i < table.rows.length; i++) {
+          const row = table.rows[i];
+          for (let j = 0; j < row.cells.length; j++) {
+            const cell = row.cells[j];
+            const input = cell.querySelector("input");
+            if (!input) continue;
+
+            const expected = answers[i][j];
+            if (expected) {
+              input.value = expected;
+              cell.classList.add("correct");
+              cell.classList.remove("incorrect");
+            }
+          }
+        }
+
+        startConfetti();
+      }
+
+      function clearAnswers() {
+        document.querySelectorAll('#crossword input').forEach(input => {
+          input.value = '';
+          input.parentElement.classList.remove('correct', 'incorrect');
+        });
+
+        confetti = [];
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      const canvas = document.getElementById('confetti');
+      const ctx = canvas.getContext('2d');
+      let confetti = [];
+
+      function startConfetti() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        for (let i = 0; i < 150; i++) {
+          confetti.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * -canvas.height,
+            size: Math.random() * 10 + 5,
+            color: ['#8bc34a', '#4caf50', '#009688', '#cddc39', '#ffeb3b', '#ffc107'][Math.floor(Math.random() * 6)],
+            speed: Math.random() * 3 + 2,
+            angle: Math.random() * 6.28,
+            spin: Math.random() * 0.2 - 0.1,
+            wave: Math.random() * 0.5 + 0.5
+          });
+        }
+
+        animateConfetti();
+      }
+
+      function animateConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        confetti.forEach(p => {
+          p.y += p.speed;
+          p.angle += p.spin;
+          p.x += Math.sin(p.y * p.wave / 100) * 2;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+
+          if (p.y > canvas.height) {
+            p.y = Math.random() * -100;
+            p.x = Math.random() * canvas.width;
+          }
+        });
+
+        if (confetti.length > 0) {
+          requestAnimationFrame(animateConfetti);
+        }
+      }
+
+      window.addEventListener('resize', () => {
+        if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+      });
+    </script>
+</body>
+
+</html>
